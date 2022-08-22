@@ -8,7 +8,7 @@ function ContextProvider({ children }) {
     const [images, setImages] = useState([])
 
     useEffect(() => {
-        async function fetchData(){
+        async function fetchData() {
             const res = await fetch("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
             const data = await res.json()
             return await data
@@ -17,7 +17,7 @@ function ContextProvider({ children }) {
     }, [])
     console.log(images)
     return (
-        <Context.Provider value={images}>
+        <Context.Provider value={{images}}>
             {children}
         </Context.Provider>
     )
