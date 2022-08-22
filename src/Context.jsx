@@ -29,6 +29,10 @@ function ContextProvider({ children }) {
         setCartItems(prevItems => prevItems.filter(item=> item.id !== currItem.id))
     }
 
+    function emptyCart(){
+        setCartItems([])
+    }
+
     // toggle the heart on images on and off
     function toggleFavorite(id) {
         const newArr = images.map(img => {
@@ -41,7 +45,7 @@ function ContextProvider({ children }) {
     }
 
     return (
-        <Context.Provider value={{ images, toggleFavorite, addItem, cartItems, removeItem}}>
+        <Context.Provider value={{ images, toggleFavorite, addItem, cartItems, removeItem, emptyCart}}>
             {children}
         </Context.Provider>
     )
