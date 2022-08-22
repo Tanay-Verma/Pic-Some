@@ -8,16 +8,17 @@ function ContextProvider({ children }) {
     const [images, setImages] = useState([])
 
     useEffect(() => {
+        // making call to api to fetch the images for dispkaying
         async function fetchData() {
             const res = await fetch("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
             const data = await res.json()
-            return await data
+            setImages(data)
         }
-        setImages(prevImages => [...prevImages, fetchData()])
+        fetchData()
     }, [])
-    console.log(images)
+
     return (
-        <Context.Provider value={{images}}>
+        <Context.Provider value={{ images }}>
             {children}
         </Context.Provider>
     )
