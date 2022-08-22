@@ -9,8 +9,8 @@ function ContextProvider({ children }) {
     const [images, setImages] = useState([])
     const [cartItems,setCartItems] = useState([])
 
+    // making call to api to fetch the images for dispkaying
     useEffect(() => {
-        // making call to api to fetch the images for dispkaying
         async function fetchData() {
             const res = await fetch("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
             const data = await res.json()
@@ -19,12 +19,17 @@ function ContextProvider({ children }) {
         fetchData()
     }, [])
     
+    // adds item to the cartItems array
     function addItem(newItem){
         setCartItems(prevItems => [...prevItems,newItem])
     }
 
-    console.log(cartItems)
+    // removes item from the cartItems array
+    function removeItem(currItem){
+        setCartItems(prevItems => prevItems.filter(item=> item.id !== currItem.id))
+    }
 
+    // toggle the heart on images on and off
     function toggleFavorite(id) {
         const newArr = images.map(img => {
             if (img.id === id) {
@@ -36,7 +41,7 @@ function ContextProvider({ children }) {
     }
 
     return (
-        <Context.Provider value={{ images, toggleFavorite, addItem, cartItems}}>
+        <Context.Provider value={{ images, toggleFavorite, addItem, cartItems, removeItem}}>
             {children}
         </Context.Provider>
     )

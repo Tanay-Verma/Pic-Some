@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 function Image({ img, className }) {
     // to see if the mouse is hovered over the images 
     const [hovered, setHovered] = useState(false)
-    const { toggleFavorite, addItem, cartItems, images } = useContext(Context)
+    const { toggleFavorite, addItem, cartItems, removeItem} = useContext(Context)
 
     // these icons are displayed when hovered is flipped to true
     // displays Heart
@@ -22,7 +22,7 @@ function Image({ img, className }) {
 
     // displays cart when added to cart
     const shoppingCart = cartItems.some(item=>item.id === img.id) &&
-        <i className="ri-shopping-cart-fill cart"></i>
+        <i className="ri-shopping-cart-fill cart" onClick={()=>removeItem(img)}></i>
     
     return (
         <div className={`${className} image-container`} onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)}>
