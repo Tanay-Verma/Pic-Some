@@ -9,7 +9,7 @@ function ContextProvider({ children }) {
     const [images, setImages] = useState([])
     const [cartItems,setCartItems] = useState([])
 
-    // making call to api to fetch the images for dispkaying
+    // making call to api to fetch the images for displaying
     useEffect(() => {
         async function fetchData() {
             const res = await fetch("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
